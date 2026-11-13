@@ -16,7 +16,17 @@ ICONS = {
  "check": '<path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/><path d="M8.5 12l2.5 2.5L16 9.5"/>',
  "target": '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>',
  "wa": '<path d="M3 21l1.6-5A8.5 8.5 0 1112 20.5a8.4 8.4 0 01-4-1z"/>',
+ "phone": '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/>',
+ "pin": '<path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>',
+ "clock": '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+ "arrow": '<path d="M19 12H5M11 6l-6 6 6 6"/>',
+ "tick": '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+ "refresh": '<path d="M20 12a8 8 0 11-2.3-5.6M20 4v5h-5"/>',
+ "layers": '<path d="M12 3l9 5-9 5-9-5zM3 13l9 5 9-5"/>',
+ "search": '<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',
+ "doc": '<path d="M6 2h9l5 5v15H6zM14 2v6h6M9 13h8M9 17h5"/>',
 }
+def raw(n,cls=''): return f'<svg viewBox="0 0 24 24" aria-hidden="true">{ICONS[n]}</svg>'
 def icon(n): return f'<span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24">{ICONS[n]}</svg></span>'
 
 def wa(text=""):
@@ -54,15 +64,16 @@ def head(title, desc, active="", depth_note=""):
 <meta property="og:title" content="{esc(full)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:locale" content="ar_SA"><meta property="og:type" content="website">
 <link rel="icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
+<div class="topbar"><div class="wrap"><a href="tel:{C['phone_tel']}" dir="ltr">{raw('phone')}{C['phone_display']}</a><span>{raw('pin')}حائل، المملكة العربية السعودية</span><span class="hide-m">{raw('clock')}خدماتنا عن بُعد لجميع مناطق المملكة</span></div></div>
 <header class="hdr"><div class="wrap">
 <a class="brand" href="index.html" aria-label="توضيح المعرفة لخدمات الأعمال - الرئيسية"><img src="logo.png" alt="شعار توضيح المعرفة لخدمات الأعمال" width="160" height="54"></a>
 <nav id="nav" class="nav" aria-label="القائمة الرئيسية">{nav}</nav>
-<a class="btn btn-p btn-top" href="{wa('السلام عليكم، أرغب في طلب خدمة من توضيح المعرفة لخدمات الأعمال.')}" target="_blank" rel="noopener">اطلب خدمتك</a>
+<a class="btn btn-p btn-top" href="{wa('السلام عليكم، أرغب في طلب خدمة من توضيح المعرفة لخدمات الأعمال.')}" target="_blank" rel="noopener">{raw('wa')}اطلب خدمتك</a>
 <button class="menu-btn" aria-expanded="false" aria-controls="nav">القائمة</button>
 </div></header>
 <main id="main">
@@ -74,14 +85,14 @@ def foot():
 <footer class="ftr"><div class="wrap">
 <div class="cols">
 <div><span class="logo-w"><img src="logo.png" alt="توضيح المعرفة لخدمات الأعمال" width="140" height="46"></span>
-<p>شركة سعودية مقرها حائل، تقدم خدمات الأعمال الإدارية والتشغيلية للشركات والمؤسسات ورواد الأعمال والمستثمرين.</p></div>
-<div><h3>روابط الموقع</h3><a href="index.html">الرئيسية</a><a href="about.html">من نحن</a><a href="services.html">الخدمات</a><a href="packages.html">باقات الأعمال</a><a href="faq.html">الأسئلة الشائعة</a><a href="contact.html">تواصل معنا</a></div>
-<div><h3>الخدمات</h3><a href="services.html">التأسيس والتراخيص</a><a href="platforms-management.html">إدارة المنصات</a><a href="readiness.html">فحص جاهزية المنشأة</a><a href="projects.html">المشاريع والمنافسات</a><a href="investors.html">خدمات المستثمرين</a></div>
-<div><h3>التواصل</h3><a href="tel:{C['phone_tel']}" dir="ltr" style="text-align:right">{C['phone_display']}</a><a href="{wa()}" target="_blank" rel="noopener">واتساب</a>{mail}<span>{C['city']}</span></div>
+<p>شركة سعودية مقرها حائل، تقدم خدمات الأعمال الإدارية والتشغيلية ومتابعة الإجراءات والمنصات الحكومية للمنشآت ورواد الأعمال والمستثمرين.</p><p class="slogan">أعمالك تستحق وقتك.. وإجراءاتها علينا.</p></div>
+<div><h3>خدمات مختارة</h3><a href="entity-business-center.html">تأسيس الشركات</a><a href="entity-qiwa.html">خدمات منصة قوى</a><a href="entity-misa.html">خدمات وزارة الاستثمار</a><a href="entity-balady.html">خدمات منصة بلدي</a><a href="entity-gosi.html">خدمات التأمينات الاجتماعية</a><a href="entity-zatca.html">خدمات الزكاة والضريبة</a><a href="platforms-management.html">إدارة المنصات الحكومية</a></div>
+<div><h3>روابط سريعة</h3><a href="index.html">الرئيسية</a><a href="about.html">من نحن</a><a href="services.html">الخدمات</a><a href="packages.html">باقات الأعمال</a><a href="faq.html">الأسئلة الشائعة</a><a href="contact.html">تواصل معنا</a><a href="privacy.html">سياسة الخصوصية</a><a href="terms.html">الشروط والأحكام</a></div>
+<div><h3>تواصل معنا</h3><span>{C['city']}</span><a href="tel:{C['phone_tel']}" dir="ltr" style="text-align:right">{C['phone_display']}</a><a href="{wa()}" target="_blank" rel="noopener">واتساب</a>{mail}<span>نطاق الخدمة: جميع مناطق المملكة</span></div>
 </div>
-<div class="disc"><p><a style="display:inline" href="privacy.html">سياسة الخصوصية</a> · <a style="display:inline" href="terms.html">الشروط والأحكام</a> · <a style="display:inline" href="refund.html">سياسة الإلغاء والاسترجاع</a></p>
-<p><strong>تنويه:</strong> توضيح المعرفة جهة خاصة مستقلة وليست جهة حكومية، ولا تمثل أيًّا من الجهات الحكومية المذكورة في هذا الموقع. أسماء الجهات والمنصات تُذكر للتعريف بالخدمة فقط، وتعود ملكيتها لأصحابها.</p>
-<p>© 2026 توضيح المعرفة لخدمات الأعمال. جميع الحقوق محفوظة.</p></div>
+<div class="disc"><p><a style="display:inline" href="refund.html">سياسة الإلغاء والاسترجاع</a></p>
+<p><strong>تنويه:</strong> شركة توضيح المعرفة جهة خاصة تقدم خدمات أعمال مساندة، وليست جهة حكومية ولا تمثل الجهات والمنصات الرسمية المذكورة في الموقع. أسماء الجهات والمنصات تُذكر للتعريف بالخدمة فقط، وتعود ملكيتها لأصحابها.</p>
+<p>© 2026 شركة توضيح المعرفة لخدمات الأعمال. جميع الحقوق محفوظة.</p></div>
 </div></footer>
 <script src="app.js" defer></script>
 </body></html>'''
@@ -100,22 +111,60 @@ def cta(t="جاهز لبدء طلبك؟", d="أرسل لنا احتياجك عب
     return f'<section class="s"><div class="wrap"><div class="cta"><div><h2>{t}</h2><p>{d}</p></div><a class="btn btn-wa" href="{wa("السلام عليكم، أرغب في طلب خدمة من توضيح المعرفة لخدمات الأعمال.")}" target="_blank" rel="noopener">اطلب خدمتك عبر واتساب</a></div></div></section>'
 
 # ---------------- الرئيسية
-cards = "".join(f'<article class="card">{icon(ic)}<h3>{esc(t)}</h3><p>{esc(d)}</p><a class="btn btn-o btn-sm" href="{lk}">استعرض التفاصيل</a></article>' for (t,d,ic),lk in zip(MAIN_SERVICES, MAIN_LINKS))
-ent_cards = "".join(f'<a class="card" style="text-decoration:none" href="entity-{e[0]}.html"><span class="mono" aria-hidden="true">{e[2]}</span><h3>{e[1]}</h3><p>{e[3]}</p><span style="color:var(--blue-d);font-weight:600">استعرض الخدمات ←</span></a>' for e in ENTITIES[:8])
+HOME_ENTS = ["business-center","mc","misa","qiwa","balady","gosi","zatca","mim","mofa","absher-business","saip","chambers"]
+ent_cards = "".join(f'<a class="card hov ent" href="entity-{EN[k][0]}.html"><span class="mono" aria-hidden="true">{EN[k][2]}</span><h3>{EN[k][1]}</h3><p>{EN[k][3]}</p><span class="more">عرض الخدمات {raw("arrow")}</span></a>' for k in HOME_ENTS)
+WHY = [("خبرة عملية","نساعد أصحاب المنشآت على فهم الإجراءات الحكومية وتنظيم خطوات تنفيذها.","target"),
+       ("خدمات للمنشآت والمستثمرين","نقدم خدماتنا لرواد الأعمال والشركات والمستثمرين داخل المملكة.","users"),
+       ("جهات متعددة في مكان واحد","نجمع خدمات تأسيس الأعمال والموظفين والتراخيص والمنصات الحكومية.","layers"),
+       ("متابعة مستمرة","نساعدك على متابعة الطلبات والمواعيد والتجديدات بحسب نطاق الخدمة.","refresh")]
+why = "".join(f'<article class="card"><span class="ic" aria-hidden="true">{raw(i)}</span><h3>{t}</h3><p>{d}</p></article>' for t,d,i in WHY)
+CONSULT = [("التشخيص والإرشاد","نساعدك على تحديد الإجراء المناسب لمنشأتك وفهم متطلبات الجهة الحكومية ذات العلاقة.","search"),
+           ("دراسة متطلبات التأسيس","نراجع طبيعة النشاط والإجراءات المرتبطة بتأسيس المنشأة وتجهيزها لبدء العمل.","building"),
+           ("الامتثال والجاهزية","نساعدك على مراجعة التراخيص والالتزامات الإدارية والتنظيمية المتعلقة بنشاط منشأتك.","check"),
+           ("التنفيذ والمتابعة","نتولى متابعة الإجراءات المتفق عليها عبر القنوات الرسمية، مع اطلاعك على حالة الطلب والمستندات المطلوبة.","doc")]
+consult = "".join(f'<article class="card"><span class="ic" aria-hidden="true">{raw(i)}</span><h3>{t}</h3><p>{d}</p></article>' for t,d,i in CONSULT)
+home_faq = "".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q,a in FAQ)
+home_ld = json.dumps({"@context":"https://schema.org","@graph":[
+  {"@type":"ProfessionalService","name":"شركة توضيح المعرفة لخدمات الأعمال","slogan":"أعمالك تستحق وقتك.. وإجراءاتها علينا.","telephone":C["phone_tel"],"address":{"@type":"PostalAddress","addressLocality":"حائل","addressCountry":"SA"},"areaServed":"SA","url":C["base_url"]},
+  {"@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in FAQ]}]},ensure_ascii=False)
+WA_MSG = wa('السلام عليكم، أرغب في طلب خدمة من توضيح المعرفة لخدمات الأعمال.')
 body = f'''<section class="hero"><div class="wrap">
-<div><span class="tag">شريكك الإداري والتشغيلي</span>
-<h1>من تأسيس منشأتك إلى إدارة أعمالها.. خدمات متكاملة في مكان واحد.</h1>
-<p class="lead">تساعدك شركة توضيح المعرفة لخدمات الأعمال في تأسيس الشركات والمؤسسات، وإدارة الإجراءات الحكومية، ومتابعة التراخيص والموارد البشرية، وتنظيم التزامات منشأتك، وتأهيلها للمشاريع والمنافسات.</p>
-<p>نقدم حلولًا إدارية وتشغيلية تناسب احتياجات المنشآت في مختلف مراحل أعمالها.</p>
-<div class="acts"><a class="btn btn-p" href="services.html">استعرض خدماتنا</a><a class="btn btn-wa" href="{wa('السلام عليكم، أرغب في طلب خدمة من توضيح المعرفة لخدمات الأعمال.')}" target="_blank" rel="noopener">اطلب خدمتك عبر واتساب</a></div></div>
+<div><span class="tag">حلول متكاملة لإدارة خدمات منشأتك الحكومية</span>
+<h1>أعمالك تستحق وقتك.. وإجراءاتها علينا.</h1>
+<p class="lead">من تأسيس شركتك وإصدار التراخيص إلى إدارة الموظفين والمنصات الحكومية، تساعدك توضيح المعرفة على إنجاز إجراءات منشأتك ومتابعتها من مكان واحد، بخطوات واضحة وخدمة مهنية.</p>
+<div class="acts"><a class="btn btn-wa" href="{WA_MSG}" target="_blank" rel="noopener">{raw("wa")}اطلب خدمتك عبر واتساب</a><a class="btn btn-o" href="services.html">تصفّح خدماتنا</a></div>
+<ul class="ticks"><li>{raw("tick")}استشارة أولية لفهم احتياجك</li><li>{raw("tick")}خصوصية مستندات منشأتك</li><li>{raw("tick")}خدمات عن بُعد لجميع مناطق المملكة</li></ul></div>
 <div class="hero-art">{HERO_SVG}</div></div></section>
-<section class="s"><div class="wrap"><div class="s-head"><h2>حلول أعمال متكاملة لمنشأتك.</h2><p class="lead">سواء كنت تؤسس مشروعك، أو تدير منشأة قائمة، أو تستعد للمشاركة في المشاريع والمنافسات، نقدم لك خدمات تساعدك على تنظيم إجراءات أعمالك ومتابعتها.</p></div>
-<div class="grid g3">{cards}</div></div></section>
-<section class="s alt"><div class="wrap"><div class="s-head"><h2>الخدمات الحكومية بحسب الجهة</h2><p class="lead">اختر الوزارة أو المنصة المختصة ثم انتقل إلى الخدمة التي تحتاجها واطلبها عبر واتساب.</p></div>
-<div class="grid g4">{ent_cards}</div><p style="margin-top:24px"><a class="btn btn-p" href="services.html">عرض جميع الجهات</a></p></div></section>
-<section class="s"><div class="wrap"><div class="s-head"><h2>كيف نعمل معك؟</h2></div>
-<ol class="steps"><li><h3>اختر الخدمة</h3><p>تصفح الجهات والخدمات أو تواصل معنا مباشرة.</p></li><li><h3>أرسل طلبك</h3><p>عبر واتساب برسالة جاهزة تتضمن اسم الخدمة والجهة.</p></li><li><h3>نراجع احتياجك</h3><p>نحدد معك المتطلبات والمستندات ونطاق العمل.</p></li><li><h3>ننفذ ونتابع</h3><p>نجهز الطلب ونتابع الإجراء ونبقيك على اطلاع.</p></li></ol></div></section>
-{cta()}'''
+
+<section class="stats" aria-label="توضيح المعرفة بالأرقام"><div class="wrap"><div class="box-s">
+<div class="stat"><b>{len(ENTITIES)}</b><span>جهة ومنصة حكومية</span></div>
+<div class="stat"><b>3</b><span>باقات أعمال</span></div>
+<div class="stat"><b>13</b><span>منطقة نخدمها عن بُعد</span></div>
+<div class="stat"><b>مجاني</b><span>فحص أولي لاحتياجك</span></div>
+</div></div></section>
+
+<section class="s"><div class="wrap"><div class="s-head"><span class="eyebrow">خدمات الأعمال</span><h2>خدمات الوزارات والجهات الحكومية</h2><p class="lead">اختر الجهة المختصة لتعرف خدماتها، ثم اطلب الخدمة التي تحتاجها عبر واتساب.</p></div>
+<div class="grid g4">{ent_cards}</div><p style="margin-top:28px"><a class="btn btn-p" href="services.html">عرض جميع الجهات {raw("arrow")}</a></p></div></section>
+
+<section class="s alt"><div class="wrap split">
+<div><span class="eyebrow">الاستشارات الحكومية</span><h2>استشارات تساعدك على اتخاذ الخطوة الصحيحة</h2>
+<p class="lead">سواء كنت تستعد لتأسيس منشأتك أو تحتاج إلى معالجة إجراء حكومي قائم، نساعدك على فهم المتطلبات وتحديد الخطوات المناسبة قبل البدء.</p>
+<ul class="ticks"><li>{raw("tick")}توضيح الإجراءات والمتطلبات</li><li>{raw("tick")}تحديد الجهات والمنصات المختصة</li><li>{raw("tick")}تنظيم خطوات التنفيذ والمتابعة</li></ul>
+<div class="acts" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px"><a class="btn btn-p" href="{WA_MSG}" target="_blank" rel="noopener">اطلب استشارتك الأولية</a><a class="btn btn-o" href="readiness.html">فحص جاهزية المنشأة</a></div></div>
+<div class="mini">{consult}</div></div></section>
+
+<section class="s"><div class="wrap"><div class="s-head"><span class="eyebrow">لماذا توضيح المعرفة؟</span><h2>شريك واضح في إجراءات منشأتك</h2></div>
+<div class="grid g4">{why}</div></div></section>
+
+<section class="s alt"><div class="wrap"><div class="s-head"><span class="eyebrow">كيف نعمل؟</span><h2>من طلبك إلى إكمال الخدمة في أربع خطوات</h2></div>
+<ol class="steps"><li><h3>اطلب خدمتك</h3><p>تواصل معنا عبر واتساب وحدد الخدمة أو الإجراء الذي تحتاجه منشأتك.</p></li><li><h3>مراجعة المتطلبات</h3><p>نراجع تفاصيل الطلب ونوضح المستندات والاشتراطات والخطوات اللازمة.</p></li><li><h3>التنفيذ والمتابعة</h3><p>نبدأ تنفيذ الإجراءات المتفق عليها ومتابعتها عبر الجهات والمنصات الرسمية.</p></li><li><h3>إكمال الخدمة</h3><p>نبلغك بنتيجة الطلب ونسلمك المستندات المتاحة بعد اكتمال الإجراء.</p></li></ol></div></section>
+
+<section class="s"><div class="wrap faq-wrap"><div class="s-head center"><span class="eyebrow">الأسئلة الشائعة</span><h2>إجابات تساعدك قبل طلب الخدمة</h2></div>{home_faq}
+<p style="text-align:center;margin-top:20px"><a class="more" href="faq.html">كل الأسئلة الشائعة {raw("arrow")}</a></p></div></section>
+
+<section class="s"><div class="wrap"><div class="cta"><div><h2>جاهز لتنظيم وإنجاز إجراءات منشأتك؟</h2><p>من تأسيس الأعمال إلى إدارة الموظفين والتراخيص والمنصات الحكومية، نساعدك على تحديد الخدمة المناسبة ومتابعة إجراءاتها بخطوات واضحة.</p><p class="slogan">أعمالك تستحق وقتك.. وإجراءاتها علينا.</p></div>
+<div class="acts"><a class="btn btn-wa" href="{WA_MSG}" target="_blank" rel="noopener">{raw("wa")}اطلب خدمتك عبر واتساب</a><a class="btn btn-ol" href="contact.html">أرسل طلبك</a></div></div></div></section>
+<script type="application/ld+json">{home_ld}</script>'''
 page("index.html","الرئيسية","تأسيس الشركات والمؤسسات، إدارة المنصات الحكومية، التراخيص والموارد البشرية وتأهيل المنشآت للمشاريع. شركة سعودية مقرها حائل.",body,"index.html")
 
 # ---------------- من نحن
